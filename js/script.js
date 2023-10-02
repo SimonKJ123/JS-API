@@ -1,19 +1,22 @@
-
+// Importing the IGNORE constant from the filter.js module
 import { IGNORE } from "./modules/filter.js";
 
+// Immediately invoked async function expression (IIFE)
 const swapiApp = (async function () {
   const SWAPIURL = "https://swapi.dev/api/";
   const NAVBAR = document.querySelector("#nav-bar");
   const CARDCONTAINER = document.querySelector(".card-container");
 
+  // Variables to store URLs for pagination
   let nextPageURL = null;
   let previousPageURL = null;
 
   try {
-    
+    // Fetching data from SWAPIURL
     const RESPONSE = await fetch(SWAPIURL);
     const JSONDATA = await RESPONSE.json();
 
+    // Creating navigation items based on the keys in JSONDATA
     for (let key in JSONDATA) {
       let navItem = document.createElement("a");
       navItem.addEventListener("click", navClick);
@@ -23,11 +26,13 @@ const swapiApp = (async function () {
       NAVBAR.appendChild(navItem);
     }
 
+    // Programmatically triggering a click on the first navigation item
     document.querySelectorAll(".nav-item")[0].click();
   } catch (error) {
     console.log(error);
   }
 
+  // Event handler for navigation item click
   async function navClick(e) {
     e.preventDefault();
     CARDCONTAINER.innerHTML = "";
@@ -43,6 +48,7 @@ const swapiApp = (async function () {
     showData(data);
   }
 
+  // Event handlers for next and previous buttons
   const nextButton = document.getElementById("nextButton");
   nextButton.addEventListener("click", nextButtonClick);
 
@@ -61,6 +67,7 @@ const swapiApp = (async function () {
     }
   }
 
+  // Fetch data for a given URL
   async function fetchPageData(url) {
     CARDCONTAINER.innerHTML = "";
     const data = await getData(url);
@@ -71,11 +78,13 @@ const swapiApp = (async function () {
     showData(data);
   }
 
+  // Fetch data from a given URL
   async function getData(url) {
     const RESPONSE = await fetch(url);
     return await RESPONSE.json();
   }
 
+  // Display data in the card container
   function showData(data) {
     data.results.forEach((dataItem) => {
       let card = document.createElement("div");
@@ -92,7 +101,8 @@ const swapiApp = (async function () {
           )}: </span> <span class="val">${v}</span><br>`
         );
       }
-         
+
+      // Event listener for displaying full data on card click
       card.addEventListener("click", function () {
         showFullData(dataItem);
       });
@@ -100,16 +110,20 @@ const swapiApp = (async function () {
       CARDCONTAINER.appendChild(card);
     });
   }
-     
-  function showFullData(dataItem) { 
+
+  // Display full data in a focused view
+  function showFullData(dataItem) {
+    // Remove the event listener from all cards to disable further clicks
     document.querySelectorAll('.card').forEach((card) => {
       card.removeEventListener('click', showFullData);
     });
-       
+
+    // Remove the active class from all cards
     document.querySelectorAll('.card').forEach((card) => {
       card.classList.remove('active');
     });
-       
+
+    // Create a focused view container
     const focusedView = document.createElement("div");
     focusedView.className = "focused-view";
 
@@ -119,29 +133,33 @@ const swapiApp = (async function () {
         `<span class="key">${k.replaceAll("_", " ")}: </span> <span class="val">${v}</span><br>`
       );
     }
-       
+
+    // Hide all other cards
     document.querySelectorAll('.card').forEach((cardElement) => {
       cardElement.style.display = "none";
     });
-       
+
+    // Append the focused view to the document body
     document.body.appendChild(focusedView);
-       
+
+    // Add an exit button to return to the card display
     const exitButton = document.createElement("button");
     exitButton.className = "exit-button";
     exitButton.textContent = "Exit";
     exitButton.addEventListener("click", function () {
-      focusedView.remove(); / 
+      focusedView.remove(); // Remove the focused view
       document.querySelectorAll('.card').forEach((card) => {
-        card.style.display = "block";  
+        card.style.display = "block"; // Show all cards again
       });
       document.querySelectorAll('.card').forEach((card) => {
-        card.addEventListener('click', showFullData);  
+        card.addEventListener('click', showFullData); // Add event listener back to cards
       });
     });
   
     focusedView.appendChild(exitButton);
   }
-     
+
+  // Add event listeners to all cards
   document.querySelectorAll('.card').forEach((card) => {
     card.addEventListener('click', showFullData);
   });

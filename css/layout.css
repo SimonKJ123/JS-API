@@ -1,9 +1,11 @@
+/* Resetting default margin, padding, and box-sizing for all elements */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Styling for the main container with a background image */
 .wrapper {
     background-image: url('../img/1801911.jpg');
     width: 100vw;
@@ -14,6 +16,7 @@
     align-items: center;
 }
 
+/* Navigation bar styles */
 .nav-bar {
     background-color: black;
     background-image: url('/img/Z7D2q6.jpg');
@@ -21,12 +24,12 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
+/* Styles for individual navigation items */
 .nav-item {
     color: lightblue;
     text-decoration: none;
@@ -35,11 +38,13 @@
     text-transform: capitalize;
 }
 
-.nav-item:hover {
-    text-decoration: underline;
-    color: white;
-}
+    /* Hover styles for navigation items */
+    .nav-item:hover {
+        text-decoration: underline;
+        color: white;
+    }
 
+/* Card styles */
 .card {
     padding: 5px;
     margin: 10px;
@@ -54,16 +59,19 @@
     border: 2px solid lightblue;
 }
 
-.card:hover {
-    color: lightblue;
-    transition: 2s;
-    box-shadow: 0px 0px 20px lightblue;
-}
+    /* Hover styles for cards */
+    .card:hover {
+        color: lightblue;
+        transition: 2s;
+        box-shadow: 0px 0px 20px lightblue;
+    }
 
+/* Styles for 'key' elements within cards */
 .key {
     font-weight: bold;
 }
 
+/* Container for card layout */
 .card-container {
     margin: auto;
     max-width: 100%;
@@ -71,11 +79,13 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
 
+/* Styles for active elements */
 .active {
     text-decoration: underline;
     color: white;
 }
 
+/* Button container styles */
 .btn-container {
     display: flex;
     justify-content: center;
@@ -84,6 +94,7 @@
     margin-bottom: 20px;
 }
 
+/* Styles for navigation buttons */
 #previousButton,
 #nextButton {
     margin: 0 20px;
@@ -94,11 +105,13 @@
     border: 3px solid black;
 }
 
-#previousButton:hover,
-#nextButton:hover {
-    color: white;
-}
+    /* Hover styles for navigation buttons */
+    #previousButton:hover,
+    #nextButton:hover {
+        color: white;
+    }
 
+/* Styles for the focused view */
 .focused-view {
     position: fixed;
     height: 800px;
@@ -119,7 +132,8 @@
     border: 2px solid lightblue;
 }
 
-.exit-button{
+/* Styles for the exit button in the focused view */
+.exit-button {
     margin: 0 20px;
     font-family: 'Death Star', sans-serif;
     font-size: 20px;

@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta information for character encoding and browser compatibility -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Linking external stylesheet for layout -->
     <link rel="stylesheet" href="./css/layout.css">
+
+    <!-- Linking external fonts -->
     <link href="https://fonts.cdnfonts.com/css/death-star" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/sf-distant-galaxy-altoutline" rel="stylesheet">
+
+    <!-- Loading JavaScript with 'defer' attribute -->
     <script defer type="module" src="./js/script.js"></script>
+
+    <!-- Setting the title of the page -->
     <title>Api</title>
 </head>
 <body>
+    <!-- Main wrapper for the content -->
     <div class="wrapper">
+
+        <!-- Navigation bar -->
         <nav class="nav-bar" id="nav-bar"></nav>
+
+        <!-- Container for navigation buttons -->
         <div class="btn-container">
             <button id="previousButton" disabled>Previous</button>
             <button id="nextButton" disabled>Next</button>
         </div>
+
+        <!-- Container for displaying cards -->
         <div class="card-container"></div>
+
     </div>
 </body>
 </html>
